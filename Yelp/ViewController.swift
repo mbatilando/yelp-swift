@@ -82,6 +82,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         search(searchBar.text)
+        self.searchBar.resignFirstResponder()
     }
     
     func search(query: String) {
