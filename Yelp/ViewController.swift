@@ -63,7 +63,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let restaurantImgStr = business["image_url"] as NSString
         let restaurantImgUrl = NSURL(string: restaurantImgStr)
-        cell.restaurantImage.setImageWithUrl(restaurantImgUrl)
+        cell.restaurantImage.setImageWithURL(restaurantImgUrl)
+        
+        let ratingImgStr = business["rating_img_url"] as NSString
+        let ratingImgUrl = NSURL(string: ratingImgStr)
+        cell.ratingImage.setImageWithURL(ratingImgUrl)
         
         return cell
     }
