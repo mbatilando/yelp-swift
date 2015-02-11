@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var client: YelpClient!
     
     // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     let yelpConsumerSecret = "cQlvZRMlfmJhTABcjCMTeRT6Ceg"
     let yelpToken = "MlVd2OpJvnVlszL8Wlk6q6lldu94lT-A"
     let yelpTokenSecret = "_8Zfs3B64WqA5nKqtxp_ta_n6cM"
+    var resultsDictionary: NSDictionary
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,6 +29,7 @@ class ViewController: UIViewController {
         
         client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             println(response)
+            self.resultsDictionary = response as NSDictionary
         }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
             println(error)
         }
@@ -36,6 +38,14 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(<#identifier: String#>)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
     }
     
     
