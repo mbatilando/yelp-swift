@@ -49,17 +49,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let business = self.restaurants![indexPath.row] as NSDictionary
         let name = business["name"] as NSString
         cell.restaurantNameLabel.text = name
+        
         let location = business["location"] as NSDictionary
         let streetObj = location["address"] as NSArray
-//        let street = streetObj as
-        // TODO: Add neighborhood
         cell.restaurantAddressLabel.text = streetObj[0] as NSString
         let numRatings = business["review_count"] as Int
         cell.restaurantNumRatingsLabel.text = String(numRatings) + " reviews"
+        
         let categoriesObj = business["categories"] as NSArray
         let categoriesObj2 = categoriesObj[0] as NSArray
         let category = categoriesObj2[0] as NSString
         cell.restaurantCategoryLabel.text = category
+        
+        let restaurantImgStr = business["image_url"] as NSString
+        let restaurantImgUrl = NSURL(string: restaurantImgStr)
+        cell.restaurantImage.setImageWithUrl(restaurantImgUrl)
+        
         return cell
     }
     
