@@ -48,7 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell") as RestaurantCell
         let business = self.restaurants![indexPath.row] as NSDictionary
         let name = business["name"] as NSString
-        cell.restaurantNameLabel.text = name
+        cell.restaurantNameLabel.text = "\(indexPath.row+1). \(name)"
         
         let location = business["location"] as NSDictionary
         let streetObj = location["address"] as NSArray
