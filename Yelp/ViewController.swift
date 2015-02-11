@@ -34,9 +34,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
         
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: "onFilterButton")
+        
         // Do any additional setup after loading the view, typically from a nib.
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        
         search("Thai")
     }
     
@@ -92,6 +93,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error)
         }
+    }
+    
+    func onFilterButton() {
+        let filtersVc = FiltersViewController()
+        let navigationController = UINavigationController(rootViewController: filtersVc)
+        
+        
     }
     
     
