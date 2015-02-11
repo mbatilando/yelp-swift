@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var client: YelpClient!
+    var searchBar: UISearchBar!
     
     @IBOutlet weak var resultsTableView: UITableView!
     // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
@@ -27,6 +28,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         self.resultsTableView.dataSource = self
         self.resultsTableView.delegate = self
+        self.resultsTableView.rowHeight = UITableViewAutomaticDimension;
+        
+        self.searchBar = UISearchBar()
+//        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
