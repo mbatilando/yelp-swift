@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     var client: YelpClient!
     var searchBar: UISearchBar!
     
@@ -31,21 +31,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.resultsTableView.rowHeight = UITableViewAutomaticDimension;
         
         self.searchBar = UISearchBar()
-//        searchBar.delegate = self
         self.navigationItem.titleView = searchBar
-        
-        
+        searchBar.delegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
-        client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            println(response)
-            self.restaurants = response["businesses"] as NSArray
-            self.resultsTableView.reloadData()
-        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-            println(error)
-        }
+        search("Thai")
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,6 +78,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return self.restaurants!.count
         }
         return 0
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        search(searchBar.text)
+    }
+    
+    func search(query: String) {
+        client.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            self.restaurants = response["businesses"] as NSArray
+            self.resultsTableView.reloadData()
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println(error)
+        }
     }
     
     
