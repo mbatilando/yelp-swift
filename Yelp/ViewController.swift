@@ -54,6 +54,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        let street = streetObj as
         // TODO: Add neighborhood
         cell.restaurantAddressLabel.text = streetObj[0] as NSString
+        let numRatings = business["review_count"] as Int
+        cell.restaurantNumRatingsLabel.text = String(numRatings) + " reviews"
+        let categoriesObj = business["categories"] as NSArray
+        let categoriesObj2 = categoriesObj[0] as NSArray
+        let category = categoriesObj2[0] as NSString
+        cell.restaurantCategoryLabel.text = category
         return cell
     }
     
