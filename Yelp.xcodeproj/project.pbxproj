@@ -18,6 +18,7 @@
 		4C71B7401A8C1CE800837B29 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71B73F1A8C1CE800837B29 /* FiltersViewController.swift */; };
 		4CB023FD1A8BD2DA001521CD /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB023FC1A8BD2DA001521CD /* RestaurantCell.swift */; };
 		4CC69CC81A8C319E00AA0812 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC69CC71A8C319E00AA0812 /* Restaurant.swift */; };
+		4CC69CCA1A8D4DB100AA0812 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC69CC91A8D4DB100AA0812 /* Filter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		4C71B73F1A8C1CE800837B29 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		4CB023FC1A8BD2DA001521CD /* RestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		4CC69CC71A8C319E00AA0812 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		4CC69CC91A8D4DB100AA0812 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		C56EF0CE844A4EE5819C72AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99D18A9D983BEAD8F7379EF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CF7EF41DD7CA4F854B8B87C9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				222D8A7A19CCFAAA00D2DB53 /* API */,
 				222D8A7B19CCFAB600D2DB53 /* View Controllers */,
 				222D8A5A19CCF9F900D2DB53 /* AppDelegate.swift */,
+				4CC69CC91A8D4DB100AA0812 /* Filter.swift */,
 				4CC69CC71A8C319E00AA0812 /* Restaurant.swift */,
 				4CB023FC1A8BD2DA001521CD /* RestaurantCell.swift */,
 				222D8A5E19CCF9F900D2DB53 /* Main.storyboard */,
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC69CCA1A8D4DB100AA0812 /* Filter.swift in Sources */,
 				4CB023FD1A8BD2DA001521CD /* RestaurantCell.swift in Sources */,
 				222D8A5D19CCF9F900D2DB53 /* ViewController.swift in Sources */,
 				4CC69CC81A8C319E00AA0812 /* Restaurant.swift in Sources */,
