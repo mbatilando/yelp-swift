@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let yelpConsumerSecret = "cQlvZRMlfmJhTABcjCMTeRT6Ceg"
     let yelpToken = "MlVd2OpJvnVlszL8Wlk6q6lldu94lT-A"
     let yelpTokenSecret = "_8Zfs3B64WqA5nKqtxp_ta_n6cM"
-    var restaurants: NSArray?
+    var restaurants: [Restaurant]?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -47,30 +47,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell") as RestaurantCell
-        let business = self.restaurants![indexPath.row] as NSDictionary
-        let name = business["name"] as NSString
-        cell.restaurantNameLabel.text = "\(indexPath.row+1). \(name)"
+        let restaurant = self.restaurants![indexPath.row]
         
-        let location = business["location"] as NSDictionary
-        let streetObj = location["address"] as NSArray
-        cell.restaurantAddressLabel.text = streetObj[0] as NSString
-        let numRatings = business["review_count"] as Int
-        cell.restaurantNumRatingsLabel.text = String(numRatings) + " reviews"
-        
-        let categoriesObj = business["categories"] as NSArray
-        let categoriesObj2 = categoriesObj[0] as NSArray
-        let category = categoriesObj2[0] as NSString
-        cell.restaurantCategoryLabel.text = category
-        
-        let restaurantImgStr = business["image_url"] as NSString
-        let restaurantImgUrl = NSURL(string: restaurantImgStr)
-        cell.restaurantImage.setImageWithURL(restaurantImgUrl)
+        cell.restaurantNameLabel.text = restaurant.name
+        cell.restaurantNumRatingsLabel.text = String(restaurant.reviewCount) +  " reviews"
+        cell.restaurantAddressLabel.text = restaurant.location
+        cell.restaurantCategoryLabel.text = restaurant.category
         cell.restaurantImage.layer.cornerRadius = 10.0
         cell.restaurantImage.clipsToBounds = true
-        
-        let ratingImgStr = business["rating_img_url"] as NSString
-        let ratingImgUrl = NSURL(string: ratingImgStr)
-        cell.ratingImage.setImageWithURL(ratingImgUrl)
+        cell.restaurantImage.setImageWithURL(restaurant.profileImageUrl)
+        cell.ratingImage.setImageWithURL(restaurant.ratingImageUrl)
         
         return cell
     }
@@ -89,7 +75,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func search(query: String) {
         client.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            self.restaurants = response["businesses"] as NSArray
+            self.restaurants = (response["businesses"] as Array).map({
+                (data: NSDictionary) -> Restaurant in
+                return Restaurant(data: data)
+            })
             self.resultsTableView.reloadData()
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error)
