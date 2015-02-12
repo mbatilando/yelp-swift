@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Timothy Lee. All rights reserved.
 //
 
-import UIKit
+import Foundation
 class Filter {
     var label: String
     var value: String
