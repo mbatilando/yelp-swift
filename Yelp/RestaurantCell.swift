@@ -17,4 +17,15 @@ class RestaurantCell: UITableViewCell {
     @IBOutlet weak var restaurantDistanceLabel: UILabel!
     @IBOutlet weak var restaurantNumRatingsLabel: UILabel!
     @IBOutlet weak var restaurantCategoryLabel: UILabel!
+    
+    func setContents(#name: String, profileImageUrl: NSURL, ratingImageUrl: NSURL, address: String, numRatings: Int, categories: String) {
+        self.restaurantNameLabel.text = name
+        self.restaurantNumRatingsLabel.text = String(numRatings) +  " reviews"
+        self.restaurantAddressLabel.text = address
+        self.restaurantCategoryLabel.text = categories
+        self.restaurantImage.layer.cornerRadius = 10.0
+        self.restaurantImage.clipsToBounds = true
+        self.restaurantImage.setImageWithURL(profileImageUrl)
+        self.ratingImage.setImageWithURL(ratingImageUrl)
+    }
 }

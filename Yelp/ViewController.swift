@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     var client: YelpClient!
     var searchBar: UISearchBar!
-    var restaurants: [Restaurant]?
+    var restaurants: [Restaurant]
     var searchManager: SearchManager
     
     @IBOutlet weak var resultsTableView: UITableView!
@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     required init(coder aDecoder: NSCoder) {
         self.searchManager = SearchManager()
+        self.restaurants = []
         super.init(coder: aDecoder)
     }
     
@@ -45,25 +46,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell") as RestaurantCell
-        let restaurant = self.restaurants![indexPath.row]
+        let restaurant = self.restaurants[indexPath.row]
         
-        cell.restaurantNameLabel.text = restaurant.name
-        cell.restaurantNumRatingsLabel.text = String(restaurant.reviewCount) +  " reviews"
-        cell.restaurantAddressLabel.text = restaurant.address
-        cell.restaurantCategoryLabel.text = restaurant.category
-        cell.restaurantImage.layer.cornerRadius = 10.0
-        cell.restaurantImage.clipsToBounds = true
-        cell.restaurantImage.setImageWithURL(restaurant.profileImageUrl)
-        cell.ratingImage.setImageWithURL(restaurant.ratingImageUrl)
+        cell.setContents(name: restaurant.name, profileImageUrl: restaurant.profileImageUrl, ratingImageUrl: restaurant.ratingImageUrl, address: restaurant.address, numRatings: restaurant.reviewCount, categories: restaurant.category)
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.restaurants != nil {
-            return self.restaurants!.count
-        }
-        return 0
+        return self.restaurants.count
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
