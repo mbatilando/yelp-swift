@@ -8,5 +8,9 @@
 
 import Foundation
 class FilterManager {
+    var filterCategories = [FilterCategory]()
     
+    init(filterCategories: [FilterCategory]) {
+        self.filterCategories = filterCategories
+    }
 }
