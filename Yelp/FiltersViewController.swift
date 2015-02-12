@@ -9,6 +9,7 @@
 import UIKit
 
 class FiltersViewController: UIViewController {
+    var delegate: FiltersViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +21,6 @@ class FiltersViewController: UIViewController {
     
     @IBAction func onSearch(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        delegate?.filtersDidChange()
     }
 }

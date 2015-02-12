@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FiltersViewDelegate {
     var client: YelpClient!
     var searchBar: UISearchBar!
     var restaurants: [Restaurant]
@@ -66,6 +66,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is UINavigationController {
+            let nav = segue.destinationViewController as UINavigationController
+            if nav.viewControllers[0] is FiltersViewController {
+                let filtersViewController = nav.viewControllers[0] as FiltersViewController
+                filtersViewController.delegate = self
+//                filtersViewController.filterManager
+            }
+            
+        }
+    }
+    
+    func filtersDidChange() {
+        println("Got delegation")
     }
     
 }

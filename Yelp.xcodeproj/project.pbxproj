@@ -22,6 +22,7 @@
 		4CC69CCC1A8D4E9900AA0812 /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC69CCB1A8D4E9900AA0812 /* FilterManager.swift */; };
 		4CC69CCE1A8D51D000AA0812 /* FilterCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC69CCD1A8D51D000AA0812 /* FilterCategory.swift */; };
 		4CC69CD01A8D557100AA0812 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC69CCF1A8D557100AA0812 /* SearchManager.swift */; };
+		4CC69CD21A8D6D4600AA0812 /* FiltersViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC69CD11A8D6D4600AA0812 /* FiltersViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		4CC69CCB1A8D4E9900AA0812 /* FilterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
 		4CC69CCD1A8D51D000AA0812 /* FilterCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCategory.swift; sourceTree = "<group>"; };
 		4CC69CCF1A8D557100AA0812 /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		4CC69CD11A8D6D4600AA0812 /* FiltersViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewDelegate.swift; sourceTree = "<group>"; };
 		C56EF0CE844A4EE5819C72AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99D18A9D983BEAD8F7379EF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CF7EF41DD7CA4F854B8B87C9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				222D8A7B19CCFAB600D2DB53 /* View Controllers */,
 				222D8A5A19CCF9F900D2DB53 /* AppDelegate.swift */,
 				4CC69CC91A8D4DB100AA0812 /* Filter.swift */,
+				4CC69CD11A8D6D4600AA0812 /* FiltersViewDelegate.swift */,
 				4CC69CCB1A8D4E9900AA0812 /* FilterManager.swift */,
 				4CC69CCF1A8D557100AA0812 /* SearchManager.swift */,
 				4CC69CCD1A8D51D000AA0812 /* FilterCategory.swift */,
@@ -315,6 +318,7 @@
 			files = (
 				4CC69CCA1A8D4DB100AA0812 /* Filter.swift in Sources */,
 				4CB023FD1A8BD2DA001521CD /* RestaurantCell.swift in Sources */,
+				4CC69CD21A8D6D4600AA0812 /* FiltersViewDelegate.swift in Sources */,
 				222D8A5D19CCF9F900D2DB53 /* ViewController.swift in Sources */,
 				4CC69CC81A8C319E00AA0812 /* Restaurant.swift in Sources */,
 				4CC69CCE1A8D51D000AA0812 /* FilterCategory.swift in Sources */,
