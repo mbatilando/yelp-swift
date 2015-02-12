@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.resultsTableView.dataSource = self
         self.resultsTableView.delegate = self
         self.resultsTableView.rowHeight = UITableViewAutomaticDimension;
+        self.resultsTableView.estimatedRowHeight = 85;
         
         self.searchBar = UISearchBar()
         self.navigationItem.titleView = searchBar
