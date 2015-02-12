@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.restaurantNameLabel.text = restaurant.name
         cell.restaurantNumRatingsLabel.text = String(restaurant.reviewCount) +  " reviews"
-        cell.restaurantAddressLabel.text = restaurant.location
+        cell.restaurantAddressLabel.text = restaurant.address
         cell.restaurantCategoryLabel.text = restaurant.category
         cell.restaurantImage.layer.cornerRadius = 10.0
         cell.restaurantImage.clipsToBounds = true
@@ -75,6 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func search(query: String) {
         client.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println(response);
             self.restaurants = (response["businesses"] as Array).map({
                 (data: NSDictionary) -> Restaurant in
                 return Restaurant(data: data)
