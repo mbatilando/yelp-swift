@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eBt-87-Jfk">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -37,7 +38,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpV-Aa-4Na">
                                                     <rect key="frame" x="98" y="16" width="42" height="18"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RhD-kr-fEx">
@@ -50,7 +51,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOv-Sv-KbM">
                                                     <rect key="frame" x="98" y="59" width="48" height="16"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-iq-m4b">
@@ -139,7 +140,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="z7O-fy-910"/>
+                    <navigationItem key="navigationItem" id="oug-n2-p8g">
+                        <barButtonItem key="leftBarButtonItem" title="Filters" id="PXy-ef-qYr">
+                            <connections>
+                                <segue destination="3rg-8t-HXQ" kind="presentation" id="YO1-G5-U1y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="resultsTableView" destination="r0z-ej-cwJ" id="DF1-pv-xcj"/>
                     </connections>
@@ -147,6 +154,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1222" y="1029"/>
+        </scene>
+        <!--Filters-->
+        <scene sceneID="dei-ep-Hbm">
+            <objects>
+                <viewController id="h8y-3c-vM6" customClass="FiltersViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OH1-pP-VXx"/>
+                        <viewControllerLayoutGuide type="bottom" id="cRg-Oj-VGz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lbZ-Mc-KzR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Filters" id="rcD-0T-hRO">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="PmE-rI-ESL">
+                            <connections>
+                                <action selector="onCancel:" destination="h8y-3c-vM6" id="kLj-uS-cNk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="a8d-uJ-2KZ">
+                            <connections>
+                                <action selector="onSearch:" destination="h8y-3c-vM6" id="3tm-1U-4cF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZv-to-77b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2655" y="1029"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lXY-TQ-ThL">
@@ -165,6 +202,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sr1-t8-kas" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="525" y="1029"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="j5c-bq-esp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3rg-8t-HXQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eo0-M8-j8f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="h8y-3c-vM6" kind="relationship" relationship="rootViewController" id="v8l-Mq-Tol"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XoI-Ae-DHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1927" y="1029"/>
         </scene>
     </scenes>
 </document>
