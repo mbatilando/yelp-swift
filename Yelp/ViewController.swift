@@ -65,6 +65,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let restaurantImgStr = business["image_url"] as NSString
         let restaurantImgUrl = NSURL(string: restaurantImgStr)
         cell.restaurantImage.setImageWithURL(restaurantImgUrl)
+        cell.restaurantImage.layer.cornerRadius = 10.0
+        cell.restaurantImage.clipsToBounds = true
         
         let ratingImgStr = business["rating_img_url"] as NSString
         let ratingImgUrl = NSURL(string: ratingImgStr)
