@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
 
-        searchManager.search("Food", onSuccess: { (restaurants) -> Void in
+        self.searchManager.search(term: "Thai", onSuccess: { (restaurants) -> Void in
             self.restaurants = restaurants
             self.resultsTableView.reloadData()
         }) { () -> Void in}
@@ -58,7 +58,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchManager.search(searchBar.text, onSuccess: { (restaurants) -> Void in
+        // TODO: CHANGE FILTER OPTIONS PARAM
+        searchManager.search(term: searchBar.text, onSuccess: { (restaurants) -> Void in
             self.restaurants = restaurants
             self.resultsTableView.reloadData()
             self.searchBar.resignFirstResponder()
@@ -78,7 +79,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func filtersDidChange() {
-        println("Got delegation")
+        searchManager.search(term: self.searchBar.text, onSuccess: { (restaurants) -> Void in
+            self.restaurants = restaurants
+            self.resultsTableView.reloadData()
+            }) { () -> Void in}
     }
     
 }

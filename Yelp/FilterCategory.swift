@@ -11,17 +11,21 @@ class FilterCategory {
     var filters: [Filter]
     var label: String
     var expanded: Bool
+    var filterName: String
     
-    init (label: String, filters: [Filter], expanded: Bool = false) {
+    init (filterName: String, label: String, filters: [Filter], expanded: Bool = false) {
         self.label = label
         self.filters = filters
         self.expanded = expanded
+        self.filterName = filterName
     }
     
     func getSelectedOptions() -> String {
         var options = [String]()
         for filter in self.filters {
-            options.append(filter.value)
+            if filter.active {
+                options.append(filter.value)
+            }
         }
         return ",".join(options)
     }
