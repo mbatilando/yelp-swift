@@ -28,7 +28,6 @@ class SearchManager {
         ]
         var foodCategory = FilterCategory(label: "Food Category", filters: foodFilters, expanded: false)
         
-        
         var bestDealFilter = Filter(label: "Best Deals", value: "best_deal", active: false)
         bestDealFilter.bestDeal = true
         var bestDealCategory = FilterCategory(label: "Deals", filters: [bestDealFilter], expanded: false)

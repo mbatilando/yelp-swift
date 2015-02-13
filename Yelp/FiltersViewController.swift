@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilterCellDelegate {
+class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilterSwitchCellDelegate {
     var delegate: FiltersViewDelegate?
     var filterManager: FilterManager?
     
@@ -24,7 +24,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
         let filter = filterCategory?.filters[indexPath.row]
-        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterCell") as FilterCell
+        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
         cell.filterNameLabel.text = filter?.label
         cell.filterSwitch.on = filter!.active
         
@@ -42,7 +42,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         return self.filterManager?.filterCategories[section].label
     }
     
-    func filterCellDidUpdateValue(filterCell: FilterCell, value: Bool) {
+    func filterCellDidUpdateValue(filterCell: FilterSwitchCell, value: Bool) {
         if let indexPath = self.filtersTable.indexPathForCell(filterCell) {
             let filterCategory = self.filterManager?.filterCategories[indexPath.section]
             let filter = filterCategory?.filters[indexPath.row]

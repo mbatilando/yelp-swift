@@ -7,6 +7,6 @@
 //
 
 import Foundation
-protocol FilterCellDelegate {
-    func filterCellDidUpdateValue(filterCell: FilterCell, value: Bool)
+protocol FilterSwitchCellDelegate {
+    func filterCellDidUpdateValue(filterCell: FilterSwitchCell, value: Bool)
 }
