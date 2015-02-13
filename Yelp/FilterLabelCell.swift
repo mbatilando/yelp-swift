@@ -10,6 +10,10 @@ import UIKit
 
 class FilterLabelCell: UITableViewCell {
 
+    @IBOutlet weak var filterLabel: UILabel!
+    
+    var delegate: FilterLabelCellDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

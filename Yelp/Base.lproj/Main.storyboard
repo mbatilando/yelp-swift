@@ -211,7 +211,7 @@
                                             <outlet property="filterSwitch" destination="L6k-oh-3yp" id="czw-42-BLX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hcv-hY-L0W" customClass="FilterLabelCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterLabelCell" id="hcv-hY-L0W" customClass="FilterLabelCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcv-hY-L0W" id="vvB-cd-8TK">
@@ -229,6 +229,9 @@
                                                 <constraint firstItem="lEd-tc-zaw" firstAttribute="leading" secondItem="vvB-cd-8TK" secondAttribute="leading" constant="8" id="BPy-Fv-V0e"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="filterLabel" destination="lEd-tc-zaw" id="Sf3-cI-fIy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

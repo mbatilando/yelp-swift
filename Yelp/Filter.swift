@@ -11,10 +11,10 @@ class Filter {
     var label: String
     var value: String
     var active: Bool
-    var bestDeal: Bool?
-    var isFilterLabel: Bool = false
+    var bestDeal: Bool
+    var isFilterLabel: Bool
 
-    init(label: String, value: String, active:Bool = false) {
+    init(label: String, value: String, active: Bool) {
         self.label = label
         self.value = value
         self.active = active
@@ -22,7 +22,7 @@ class Filter {
         self.isFilterLabel = false
     }
     
-    init(label: String, value: String, active:Bool = false, bestDeal: Bool) {
+    init(label: String, value: String, active: Bool, bestDeal: Bool) {
         self.label = label
         self.value = value
         self.active = active
@@ -30,7 +30,7 @@ class Filter {
         self.isFilterLabel = false
     }
     
-    init(label: String, value: String, active:Bool = false, isFilterLabel: Bool) {
+    init(label: String, value: String, active: Bool, isFilterLabel: Bool) {
         self.label = label
         self.value = value
         self.active = active

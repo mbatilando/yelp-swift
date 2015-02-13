@@ -28,11 +28,17 @@ class SearchManager {
         ]
         var foodCategory = FilterCategory(label: "Food Category", filters: foodFilters, expanded: false)
         
-        var bestDealFilter = Filter(label: "Best Deals", value: "best_deal", active: false)
-        bestDealFilter.bestDeal = true
+        var bestDealFilter = Filter(label: "Best Deals", value: "best_deal", active: false, bestDeal: true)
         var bestDealCategory = FilterCategory(label: "Deals", filters: [bestDealFilter], expanded: false)
         
-        var categories = [foodCategory, bestDealCategory]
+        var sortFilters = [
+            Filter(label: "Best Match", value: "0", active: false, isFilterLabel: true),
+            Filter(label: "Distance", value: "1", active: false, isFilterLabel: true),
+            Filter(label: "Highest Rated", value: "2", active: false, isFilterLabel: true)
+        ]
+        var sortCategory = FilterCategory(label: "Sort", filters: sortFilters, expanded: false)
+        
+        var categories = [foodCategory, bestDealCategory, sortCategory]
         
         self.filterManager = FilterManager(filterCategories: categories)
     }

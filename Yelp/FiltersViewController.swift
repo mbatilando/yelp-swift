@@ -25,13 +25,21 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
         let filter = filterCategory?.filters[indexPath.row]
         
-        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
-        cell.filterNameLabel.text = filter?.label
-        cell.filterSwitch.on = filter!.active
-        
-        cell.delegate = self
-        
-        return cell
+        if (filter!.isFilterLabel) {
+            let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterLabelCell") as FilterLabelCell
+            cell.filterLabel.text = filter?.label
+            if filter!.active {
+                cell.filterLabel.text = filter!.label + " selected"
+            }
+            return cell
+        } else {
+            let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
+            cell.filterNameLabel.text = filter?.label
+            cell.filterSwitch.on = filter!.active
+            cell.delegate = self
+            return cell
+
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +56,22 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
             let filterCategory = self.filterManager?.filterCategories[indexPath.section]
             let filter = filterCategory?.filters[indexPath.row]
             filter?.active = value
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        let filter = filterCategory!.filters[indexPath.row]
+        if filter.isFilterLabel {
+            // Unselect previously selected filter
+            for filter in filterCategory!.filters {
+                if filter.active {
+                    filter.active = false
+                    break
+                }
+            }
+            filter.active = !filter.active
+            self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
     
