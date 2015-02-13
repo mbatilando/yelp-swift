@@ -13,6 +13,8 @@ class FilterCell: UITableViewCell {
     @IBOutlet weak var filterNameLabel: UILabel!
     @IBOutlet weak var filterSwitch: UISwitch!
     
+    var delegate: FilterCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,6 +24,10 @@ class FilterCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func didChangeValue(sender: AnyObject) {
+        self.delegate?.filterCellDidUpdateValue(self, value: self.filterSwitch.on)
     }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilterCellDelegate {
     var delegate: FiltersViewDelegate?
     var filterManager: FilterManager?
     
@@ -27,6 +27,9 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterCell") as FilterCell
         cell.filterNameLabel.text = filter?.label
         cell.filterSwitch.on = filter!.active
+        
+        cell.delegate = self
+        
         return cell
     }
     
@@ -41,6 +44,14 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10.0
+    }
+    
+    func filterCellDidUpdateValue(filterCell: FilterCell, value: Bool) {
+        if let indexPath = self.filtersTable.indexPathForCell(filterCell) {
+            let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+            let filter = filterCategory?.filters[indexPath.row]
+            filter?.active = value
+        }
     }
     
     @IBAction func onCancel(sender: AnyObject) {
