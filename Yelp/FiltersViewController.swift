@@ -24,6 +24,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
         let filter = filterCategory?.filters[indexPath.row]
+        
         let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
         cell.filterNameLabel.text = filter?.label
         cell.filterSwitch.on = filter!.active
