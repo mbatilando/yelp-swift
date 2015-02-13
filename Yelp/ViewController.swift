@@ -28,12 +28,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.resultsTableView.dataSource = self
         self.resultsTableView.delegate = self
         self.resultsTableView.rowHeight = UITableViewAutomaticDimension;
-        self.resultsTableView.estimatedRowHeight = 85;
+        self.resultsTableView.estimatedRowHeight = 80;
         
         self.searchBar = UISearchBar()
+        self.searchBar.searchBarStyle = UISearchBarStyle.Default
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
 
+        self.searchBar.text = "Thai"
         self.searchManager.search(term: "Thai", onSuccess: { (restaurants) -> Void in
             self.restaurants = restaurants
             self.resultsTableView.reloadData()
@@ -49,6 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let restaurant = self.restaurants[indexPath.row]
         
         cell.setContents(name: restaurant.name, profileImageUrl: restaurant.profileImageUrl, ratingImageUrl: restaurant.ratingImageUrl, address: restaurant.address, numRatings: restaurant.reviewCount, categories: restaurant.category)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
     }
@@ -58,7 +61,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        // TODO: CHANGE FILTER OPTIONS PARAM
         searchManager.search(term: searchBar.text, onSuccess: { (restaurants) -> Void in
             self.restaurants = restaurants
             self.resultsTableView.reloadData()

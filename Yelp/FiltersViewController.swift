@@ -28,6 +28,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         if (filter!.isFilterLabel) {
             let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterLabelCell") as FilterLabelCell
             cell.filterLabel.text = filter?.label
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             if filter!.active {
                 cell.filterLabel.text = filter!.label + " selected"
             }
@@ -37,6 +38,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.filterNameLabel.text = filter?.label
             cell.filterSwitch.on = filter!.active
             cell.delegate = self
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             return cell
 
         }

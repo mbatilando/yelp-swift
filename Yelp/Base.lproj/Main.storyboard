@@ -143,6 +143,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oug-n2-p8g">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="PXy-ef-qYr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="3rg-8t-HXQ" kind="presentation" id="YO1-G5-U1y"/>
                             </connections>
@@ -246,11 +247,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="rcD-0T-hRO">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="PmE-rI-ESL">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCancel:" destination="h8y-3c-vM6" id="kLj-uS-cNk"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="a8d-uJ-2KZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onSearch:" destination="h8y-3c-vM6" id="3tm-1U-4cF"/>
                             </connections>
@@ -272,6 +275,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1IV-yd-vCB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.76862745099999996" green="0.070588235289999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -290,6 +294,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eo0-M8-j8f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.76862745099999996" green="0.070588235289999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.76862745099999996" green="0.070588235289999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -301,4 +310,5 @@
             <point key="canvasLocation" x="1927" y="1029"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.7686274509803922" green="0.070588235294117646" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

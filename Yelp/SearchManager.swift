@@ -68,6 +68,7 @@ class SearchManager {
                     (data: NSDictionary) -> Restaurant in
                     return Restaurant(data: data)
                 })
+                println(response["businesses"])
                 onSuccess(restaurants: restaurants)
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 onFailure()
