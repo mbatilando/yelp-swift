@@ -42,16 +42,16 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         return self.filterManager?.filterCategories[section].label
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10.0
-    }
-    
     func filterCellDidUpdateValue(filterCell: FilterCell, value: Bool) {
         if let indexPath = self.filtersTable.indexPathForCell(filterCell) {
             let filterCategory = self.filterManager?.filterCategories[indexPath.section]
             let filter = filterCategory?.filters[indexPath.row]
             filter?.active = value
         }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.filterManager!.filterCategories.count
     }
     
     @IBAction func onCancel(sender: AnyObject) {

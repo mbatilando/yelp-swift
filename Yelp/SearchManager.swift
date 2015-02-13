@@ -20,14 +20,21 @@ class SearchManager {
     
     init() {
         self.client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        var categories: [FilterCategory] = []
+        
         var foodFilters = [
             Filter(label: "Thai", value: "thai", active: false),
             Filter(label: "Greek", value: "greek", active: false),
             Filter(label: "Japanese", value: "japanese", active: false)
         ]
         var foodCategory = FilterCategory(label: "Food Category", filters: foodFilters, expanded: false)
-        categories.append(foodCategory)
+        
+        
+        var bestDealFilter = Filter(label: "Best Deals", value: "best_deal", active: false)
+        bestDealFilter.bestDeal = true
+        var bestDealCategory = FilterCategory(label: "Deals", filters: [bestDealFilter], expanded: false)
+        
+        var categories = [foodCategory, bestDealCategory]
+        
         self.filterManager = FilterManager(filterCategories: categories)
     }
     

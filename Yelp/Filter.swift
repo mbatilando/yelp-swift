@@ -11,6 +11,7 @@ class Filter {
     var label: String
     var value: String
     var active: Bool
+    var bestDeal: Bool?
 
     init(label: String, value: String, active:Bool = false) {
         self.label = label
