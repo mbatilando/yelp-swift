@@ -10,14 +10,25 @@ import Foundation
 class SearchManager {
     
     var client: YelpClient
-    
+    var filterManager: FilterManager
     let yelpConsumerKey = "DlBsYPjUKUE605DH45PWQQ"
     let yelpConsumerSecret = "cQlvZRMlfmJhTABcjCMTeRT6Ceg"
     let yelpToken = "MlVd2OpJvnVlszL8Wlk6q6lldu94lT-A"
     let yelpTokenSecret = "_8Zfs3B64WqA5nKqtxp_ta_n6cM"
     
+    
+    
     init() {
         self.client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+        var categories: [FilterCategory] = []
+        var foodFilters = [
+            Filter(label: "Thai", value: "thai", active: false),
+            Filter(label: "Greek", value: "greek", active: false),
+            Filter(label: "Japanese", value: "japanese", active: false)
+        ]
+        var foodCategory = FilterCategory(label: "Food Category", filters: foodFilters, expanded: false)
+        categories.append(foodCategory)
+        self.filterManager = FilterManager(filterCategories: categories)
     }
     
     func search(term: String, onSuccess: (restaurants:[Restaurant]) -> Void, onFailure: () -> Void) {

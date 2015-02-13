@@ -10,6 +10,7 @@ import UIKit
 
 class FiltersViewController: UIViewController {
     var delegate: FiltersViewDelegate?
+    var filterManager: FilterManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()

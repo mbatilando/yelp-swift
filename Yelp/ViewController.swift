@@ -71,7 +71,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if nav.viewControllers[0] is FiltersViewController {
                 let filtersViewController = nav.viewControllers[0] as FiltersViewController
                 filtersViewController.delegate = self
-//                filtersViewController.filterManager
+                filtersViewController.filterManager = self.searchManager.filterManager
             }
             
         }
