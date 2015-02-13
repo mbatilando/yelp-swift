@@ -167,7 +167,19 @@
                     <view key="view" contentMode="scaleToFill" id="lbZ-Mc-KzR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="uah-6v-lXR">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uah-6v-lXR" firstAttribute="leading" secondItem="lbZ-Mc-KzR" secondAttribute="leading" id="475-SM-12S"/>
+                            <constraint firstItem="uah-6v-lXR" firstAttribute="top" secondItem="OH1-pP-VXx" secondAttribute="bottom" id="Wuu-VT-jFr"/>
+                            <constraint firstAttribute="trailing" secondItem="uah-6v-lXR" secondAttribute="trailing" id="ZSC-fK-g8s"/>
+                            <constraint firstItem="cRg-Oj-VGz" firstAttribute="top" secondItem="uah-6v-lXR" secondAttribute="bottom" id="szg-9C-2tB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="rcD-0T-hRO">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="PmE-rI-ESL">
@@ -181,6 +193,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="filtersTable" destination="uah-6v-lXR" id="iDJ-MO-M3Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZv-to-77b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

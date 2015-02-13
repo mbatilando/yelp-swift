@@ -8,12 +8,40 @@
 
 import UIKit
 
-class FiltersViewController: UIViewController {
+class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var delegate: FiltersViewDelegate?
     var filterManager: FilterManager?
     
+    @IBOutlet weak var filtersTable: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.filtersTable.delegate = self
+        self.filtersTable.dataSource = self
+        self.filtersTable.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
+        cell.backgroundColor = UIColor.whiteColor()
+        let filter = filterCategory?.filters[indexPath.row]
+        cell.textLabel?.text = filter?.label
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let filterCategory = self.filterManager?.filterCategories[section]
+        return filterCategory!.filters.count
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.filterManager?.filterCategories[section].label
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10.0
     }
     
     @IBAction func onCancel(sender: AnyObject) {
