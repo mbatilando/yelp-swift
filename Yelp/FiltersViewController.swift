@@ -23,11 +23,10 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
-        
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
-        cell.backgroundColor = UIColor.whiteColor()
         let filter = filterCategory?.filters[indexPath.row]
-        cell.textLabel?.text = filter?.label
+        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterCell") as FilterCell
+        cell.filterNameLabel.text = filter?.label
+        cell.filterSwitch.on = filter!.active
         return cell
     }
     
