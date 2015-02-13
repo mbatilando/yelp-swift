@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yelp/FilterLabelCell.swift"
-            timestampString = "445545606.323283"
+            timestampString = "445547089.057142"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "setSelected(_:animated:)"
             landmarkType = "5">
          </BreakpointContent>

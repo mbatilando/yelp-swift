@@ -71,7 +71,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
             filter.active = !filter.active
-            self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+            self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
         }
     }
     

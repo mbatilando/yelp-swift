@@ -13,6 +13,7 @@ class Filter {
     var active: Bool
     var bestDeal: Bool
     var isFilterLabel: Bool
+    var isRadiusLabel: Bool
 
     init(label: String, value: String, active: Bool) {
         self.label = label
@@ -20,6 +21,7 @@ class Filter {
         self.active = active
         self.bestDeal = false
         self.isFilterLabel = false
+        self.isRadiusLabel = false
     }
     
     init(label: String, value: String, active: Bool, bestDeal: Bool) {
@@ -28,6 +30,7 @@ class Filter {
         self.active = active
         self.bestDeal = bestDeal
         self.isFilterLabel = false
+        self.isRadiusLabel = false
     }
     
     init(label: String, value: String, active: Bool, isFilterLabel: Bool) {
@@ -36,5 +39,15 @@ class Filter {
         self.active = active
         self.bestDeal = false
         self.isFilterLabel = isFilterLabel
+        self.isRadiusLabel = false
+    }
+    
+    init(label: String, value: String, active: Bool, isRadiusFilter: Bool) {
+        self.label = label
+        self.value = value
+        self.active = active
+        self.bestDeal = false
+        self.isFilterLabel = true
+        self.isRadiusLabel = isRadiusFilter
     }
 }

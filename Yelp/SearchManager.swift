@@ -38,7 +38,14 @@ class SearchManager {
         ]
         var sortCategory = FilterCategory(label: "Sort", filters: sortFilters, expanded: false)
         
-        var categories = [foodCategory, bestDealCategory, sortCategory]
+        var radiusFilters = [
+            Filter(label: "5 mi", value: "5", active: false, isRadiusFilter: true),
+            Filter(label: "10 mi", value: "10", active: false, isRadiusFilter: true),
+            Filter(label: "15 mi", value: "15", active: false, isRadiusFilter: true)
+        ]
+        var radiusCategory = FilterCategory(label: "Radius", filters: radiusFilters, expanded: false)
+        
+        var categories = [foodCategory, bestDealCategory, sortCategory, radiusCategory]
         
         self.filterManager = FilterManager(filterCategories: categories)
     }
