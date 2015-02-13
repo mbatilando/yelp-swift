@@ -168,9 +168,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="uah-6v-lXR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="uah-6v-lXR">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Tzb-pF-82I" customClass="FilterCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tzb-pF-82I" id="uwy-MU-tYl">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmz-zZ-dr8">
+                                                    <rect key="frame" x="8" y="8" width="38" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6k-oh-3yp">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Zmz-zZ-dr8" firstAttribute="leading" secondItem="uwy-MU-tYl" secondAttribute="leading" constant="8" id="0L8-6S-4fQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="L6k-oh-3yp" secondAttribute="trailing" constant="8" id="CMc-ic-aNd"/>
+                                                <constraint firstItem="Zmz-zZ-dr8" firstAttribute="leading" secondItem="uwy-MU-tYl" secondAttribute="leading" constant="8" id="Cmk-vq-pUv"/>
+                                                <constraint firstAttribute="centerY" secondItem="Zmz-zZ-dr8" secondAttribute="centerY" constant="3" id="MAh-Sn-qUo"/>
+                                                <constraint firstItem="Zmz-zZ-dr8" firstAttribute="top" secondItem="uwy-MU-tYl" secondAttribute="top" constant="8" id="Miw-3n-pKl"/>
+                                                <constraint firstAttribute="centerY" secondItem="L6k-oh-3yp" secondAttribute="centerY" id="Vui-m4-zVu"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="0L8-6S-4fQ"/>
+                                                    <exclude reference="Miw-3n-pKl"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="filterNameLabel" destination="Zmz-zZ-dr8" id="esj-P9-vbd"/>
+                                            <outlet property="filterSwitch" destination="L6k-oh-3yp" id="czw-42-BLX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
