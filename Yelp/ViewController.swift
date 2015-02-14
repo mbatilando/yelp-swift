@@ -49,10 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell") as RestaurantCell
         let restaurant = self.restaurants[indexPath.row]
-        
-        cell.setContents(name: restaurant.name, profileImageUrl: restaurant.profileImageUrl, ratingImageUrl: restaurant.ratingImageUrl, address: restaurant.address, numRatings: restaurant.reviewCount, categories: restaurant.category)
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        
+        cell.restaurant = restaurant
         return cell
     }
     

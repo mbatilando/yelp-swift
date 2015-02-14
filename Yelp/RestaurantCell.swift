@@ -18,14 +18,28 @@ class RestaurantCell: UITableViewCell {
     @IBOutlet weak var restaurantNumRatingsLabel: UILabel!
     @IBOutlet weak var restaurantCategoryLabel: UILabel!
     
-    func setContents(#name: String, profileImageUrl: NSURL, ratingImageUrl: NSURL, address: String, numRatings: Int, categories: String) {
-        self.restaurantNameLabel.text = name
-        self.restaurantNumRatingsLabel.text = String(numRatings) +  " reviews"
-        self.restaurantAddressLabel.text = address
-        self.restaurantCategoryLabel.text = categories
-        self.restaurantImage.layer.cornerRadius = 10.0
-        self.restaurantImage.clipsToBounds = true
-        self.restaurantImage.setImageWithURL(profileImageUrl)
-        self.ratingImage.setImageWithURL(ratingImageUrl)
+    var restaurant: Restaurant {
+        get {
+            return self.restaurant
+        }
+        set (data) {
+            self.restaurantNameLabel.text = data.name
+            self.restaurantNumRatingsLabel.text = String(data.reviewCount) +  " reviews"
+            self.restaurantAddressLabel.text = data.address
+            self.restaurantCategoryLabel.text = data.category
+            self.restaurantImage.layer.cornerRadius = 10.0
+            self.restaurantImage.clipsToBounds = true
+            self.restaurantImage.setImageWithURL(data.profileImageUrl)
+            self.ratingImage.setImageWithURL(data.ratingImageUrl)
+        }
+    }
+    
+    override init() {
+        super.init()
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
