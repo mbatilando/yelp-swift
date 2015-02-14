@@ -30,7 +30,9 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.filterLabel.text = filter?.label
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             if filter!.active {
-                cell.filterLabel.text = filter!.label + " selected"
+                cell.accessoryView = UIImageView(image: UIImage(named: "check"))
+            } else {
+                cell.accessoryView = nil
             }
             return cell
         } else {
