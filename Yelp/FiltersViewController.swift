@@ -21,32 +21,36 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         self.filtersTable.rowHeight = UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func foodCategoryCellForRow(#tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
-        
-        if filterCategory?.label == "Food Category" {
-            if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
-                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeLessCell") as UITableViewCell
-                return cell
-            } else if !filterCategory!.expanded && indexPath.row == 3 {
-                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeMoreCell") as UITableViewCell
-                return cell
-            }
+
+        if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
+            let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeLessCell") as UITableViewCell
+            return cell
+        } else if !filterCategory!.expanded && indexPath.row == 3 {
+            let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeMoreCell") as UITableViewCell
+            return cell
         }
-        
         let filter = filterCategory?.filters[indexPath.row]
-        
-        if filterCategory?.label == "Radius" {
-            if !filterCategory!.expanded {
-                let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "NormalCell")
-                let selectedFilter = filterCategory!.filters[filterCategory!.selectedIndex!]
-                cell.textLabel?.text = selectedFilter.label
-                cell.accessoryView = UIImageView(image: UIImage(named: "expand"))
-                return cell
-            }
-        }
-        
-        if (filter!.isFilterLabel) {
+        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
+        cell.filterNameLabel.text = filter?.label
+        cell.filterSwitch.on = filter!.active
+        cell.delegate = self
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell
+
+    }
+    
+    func radiusCategoryCellForRow(#tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        if !filterCategory!.expanded {
+            let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "NormalCell")
+            let selectedFilter = filterCategory!.filters[filterCategory!.selectedIndex!]
+            cell.textLabel?.text = selectedFilter.label
+            cell.accessoryView = UIImageView(image: UIImage(named: "expand"))
+            return cell
+        } else {
+            let filter = filterCategory?.filters[indexPath.row]
             let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterLabelCell") as FilterLabelCell
             cell.filterLabel.text = filter?.label
             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -56,14 +60,49 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.accessoryView = nil
             }
             return cell
+        }
+    }
+    
+    func sortCategoryCellForRow(#tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        let filter = filterCategory?.filters[indexPath.row]
+        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterLabelCell") as FilterLabelCell
+        cell.filterLabel.text = filter?.label
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        if filter!.active {
+            cell.accessoryView = UIImageView(image: UIImage(named: "check"))
         } else {
-            let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
-            cell.filterNameLabel.text = filter?.label
-            cell.filterSwitch.on = filter!.active
-            cell.delegate = self
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell
-
+            cell.accessoryView = nil
+        }
+        return cell
+    }
+    
+    func bestDealCategoryCellForRow(#tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        let filter = filterCategory?.filters[indexPath.row]
+        let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterSwitchCell") as FilterSwitchCell
+        cell.filterNameLabel.text = filter?.label
+        cell.filterSwitch.on = filter!.active
+        cell.delegate = self
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        switch filterCategory!.label {
+            case "Food Category":
+                let cell = foodCategoryCellForRow(tableView: tableView, indexPath: indexPath)
+                return cell
+            case "Radius":
+                let cell = radiusCategoryCellForRow(tableView: tableView, indexPath: indexPath)
+                return cell
+            case "Sort":
+                let cell = sortCategoryCellForRow(tableView: tableView, indexPath: indexPath)
+                return cell
+            default:
+                let cell = bestDealCategoryCellForRow(tableView: tableView, indexPath: indexPath)
+                return cell
         }
     }
     
