@@ -34,17 +34,17 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
+        let filter = filterCategory?.filters[indexPath.row]
+        
         if filterCategory?.label == "Radius" {
-            if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
-                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeLessCell") as UITableViewCell
-                return cell
-            } else if !filterCategory!.expanded && indexPath.row == 3 {
-                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeMoreCell") as UITableViewCell
+            if !filterCategory!.expanded {
+                let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "NormalCell")
+                let selectedFilter = filterCategory!.filters[filterCategory!.selectedIndex!]
+                cell.textLabel?.text = selectedFilter.label
+                cell.accessoryView = UIImageView(image: UIImage(named: "expand"))
                 return cell
             }
         }
-
-        let filter = filterCategory?.filters[indexPath.row]
         
         if (filter!.isFilterLabel) {
             let cell = self.filtersTable.dequeueReusableCellWithIdentifier("FilterLabelCell") as FilterLabelCell
@@ -69,13 +69,19 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let filterCategory = self.filterManager?.filterCategories[section]
-        if (filterCategory?.label == "Food Category" || filterCategory?.label == "Radius"){
+        if filterCategory?.label == "Food Category" {
             if !filterCategory!.expanded {
                 return 4
-            } else {
-                return filterCategory!.filters.count + 1
+            }
+            return filterCategory!.filters.count + 1
+        }
+
+        if filterCategory?.label == "Radius" {
+            if !filterCategory!.expanded {
+                return 1
             }
         }
+        
         return filterCategory!.filters.count
     }
     
@@ -107,29 +113,23 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         if filterCategory?.label == "Radius" {
-            if !filterCategory!.expanded && indexPath.row == 3 {
+            if !filterCategory!.expanded {
                 filterCategory!.expanded = true
-                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
-                return
-            } else if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
+            } else if filterCategory!.expanded {
                 filterCategory!.expanded = false
-                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
-                return
+                filterCategory!.selectSingleOption(atIndex: indexPath.row)
             }
+            self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+            return
         }
         
-        let filter = filterCategory!.filters[indexPath.row]
-        
-        if filter.isFilterLabel {
-            // Unselect previously selected filter
-            for filter in filterCategory!.filters {
-                if filter.active {
-                    filter.active = false
-                    break
-                }
+        if filterCategory?.label == "Sort" {
+            let filter = filterCategory!.filters[indexPath.row]
+            
+            if filter.isFilterLabel {
+                filterCategory?.selectSingleOption(atIndex: indexPath.row)
+                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
             }
-            filter.active = !filter.active
-            self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
         }
     }
     

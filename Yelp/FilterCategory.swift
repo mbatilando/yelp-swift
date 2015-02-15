@@ -12,6 +12,7 @@ class FilterCategory {
     var label: String
     var expanded: Bool
     var filterName: String
+    var selectedIndex: Int?
     
     init (filterName: String, label: String, filters: [Filter], expanded: Bool = false) {
         self.label = label
@@ -28,5 +29,16 @@ class FilterCategory {
             }
         }
         return ",".join(options)
+    }
+    
+    func selectSingleOption(atIndex index: Int) {
+        for filter in self.filters {
+            if filter.active {
+                filter.active = false
+                break
+            }
+        }
+        self.selectedIndex = index
+        self.filters[index].active = true
     }
 }
