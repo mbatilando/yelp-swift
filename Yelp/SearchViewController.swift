@@ -76,6 +76,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             if nav.viewControllers[0] is MapViewController {
                 let mapViewController = nav.viewControllers[0] as MapViewController
                 mapViewController.restaurants = self.restaurants
+                mapViewController.searchTitle = self.searchBar.text
             }
         }
     }

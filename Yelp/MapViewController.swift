@@ -13,9 +13,12 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     var restaurants: [Restaurant] = []
+    var searchTitle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = self.searchTitle
 
         let location = CLLocationCoordinate2D(
             latitude: 37.764384,
@@ -40,4 +43,9 @@ class MapViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func onList(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
