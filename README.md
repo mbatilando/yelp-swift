@@ -22,3 +22,4 @@
 * Optional: Implement the restaurant detail page.
 
 ### GIF walkthrough of all required and optional stories
+![GIF](https://raw.github.com/mbatilando/yelp-swift/master/yelp.gif)
