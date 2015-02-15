@@ -15,8 +15,9 @@
  * [x] The filters table should be organized into sections as in the mock.
  * [x] Clicking on the "Search" button should dismiss the filters page and trigger the search w/ the new filter settings.
  * [x] Optional: Categories should show a subset of the full list with a "See All" row to expand. Category list is here: http://www.yelp.com/developers/documentation/category_list (Links to an external site.)
+ * [x] Optional: Radius filter should expand as in the real Yelp app
  * Optional: implement a custom switch
- * Optional: Radius filter should expand as in the real Yelp app
+
 
 * Optional: Implement the restaurant detail page.
 
