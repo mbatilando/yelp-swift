@@ -11,6 +11,7 @@ class SearchManager {
     
     var client: YelpClient
     var filterManager: FilterManager
+    var offset: Int = 0
     let yelpConsumerKey = "DlBsYPjUKUE605DH45PWQQ"
     let yelpConsumerSecret = "cQlvZRMlfmJhTABcjCMTeRT6Ceg"
     let yelpToken = "MlVd2OpJvnVlszL8Wlk6q6lldu94lT-A"
@@ -68,6 +69,10 @@ class SearchManager {
             if !filterCategory.getSelectedOptions().isEmpty {
                 filterOptions[filterCategory.filterName] = filterCategory.getSelectedOptions()
             }
+        }
+        
+        if self.offset > 0 {
+            filterOptions["offset"] = String(self.offset)
         }
         
         self.client.searchWithTerm(term: term, filterOptions: filterOptions,

@@ -84,5 +84,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }) { () -> Void in}
     }
     
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size = scrollView.contentSize
+        let inset = scrollView.contentInset
+        let y = offset.y + bounds.size.height - inset.bottom
+        let h = size.height
+        if y > h {
+            loadMoreRows()
+        }
+    }
+    
+    private func loadMoreRows() {
+        self.searchManager.offset = self.restaurants.count
+        self.searchManager.search(term: self.searchBar.text, onSuccess: { (restaurants) -> Void in
+            self.restaurants += restaurants
+            self.resultsTableView.reloadData()
+            }) { () -> Void in}
+    }
+    
 }
 
