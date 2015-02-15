@@ -73,7 +73,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 filtersViewController.delegate = self
                 filtersViewController.filterManager = self.searchManager.filterManager
             }
-            
+            if nav.viewControllers[0] is MapViewController {
+                let mapViewController = nav.viewControllers[0] as MapViewController
+                mapViewController.restaurants = self.restaurants
+            }
         }
     }
     

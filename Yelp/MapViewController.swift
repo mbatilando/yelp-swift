@@ -12,27 +12,29 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var restaurants: [Restaurant] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 1
+
         let location = CLLocationCoordinate2D(
-            latitude: 51.50007773,
-            longitude: -0.1246402
+            latitude: 37.764384,
+            longitude: -122.440902
         )
-        // 2
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.15, 0.15)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
         
-        //3
-        let annotation = MKPointAnnotation()
-        annotation.setCoordinate(location)
-        annotation.title = "Big Ben"
-        annotation.subtitle = "London"
-        mapView.addAnnotation(annotation)
-        
-        
+        for restaurant in self.restaurants {
+            let annotation = MKPointAnnotation()
+            let restaurantLocObj = restaurant.location!["coordinate"] as NSDictionary
+            let restaurantLat = restaurantLocObj["latitude"] as Double
+            let restaurantLong = restaurantLocObj["longitude"] as Double
+            let restaurantLoc = CLLocationCoordinate2D(latitude: restaurantLat, longitude: restaurantLong)
+            annotation.setCoordinate(restaurantLoc)
+            annotation.title = restaurant.name
+            mapView.addAnnotation(annotation)
+        }
     }
     
     override func didReceiveMemoryWarning() {

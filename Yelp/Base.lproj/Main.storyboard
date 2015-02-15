@@ -354,14 +354,21 @@
                             <constraint firstItem="bH8-8h-LcX" firstAttribute="top" secondItem="b6a-J1-qk3" secondAttribute="top" id="yTW-Xx-qUe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rhH-ip-M6o"/>
+                    <navigationItem key="navigationItem" id="rhH-ip-M6o">
+                        <barButtonItem key="leftBarButtonItem" title="List" id="oTf-yf-ZB3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="eBt-87-Jfk" kind="showDetail" identifier="SearchToMap" id="Z8P-uH-0U0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="bH8-8h-LcX" id="XZV-v5-r3E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2M-wG-m2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2720" y="276"/>
+            <point key="canvasLocation" x="2655" y="332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j5c-bq-esp">
@@ -394,6 +401,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gr4-CZ-diJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.76862745099999996" green="0.070588235289999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -402,7 +410,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbE-uT-rAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1908" y="276"/>
+            <point key="canvasLocation" x="1927" y="332"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.7686274509803922" green="0.070588235294117646" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
