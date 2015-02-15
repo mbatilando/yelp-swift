@@ -50,7 +50,10 @@ class SearchManager {
         var radiusFilters = [
             Filter(label: "5 mi", value: "8046.72", active: false, isRadiusFilter: true),
             Filter(label: "10 mi", value: "16093.4", active: false, isRadiusFilter: true),
-            Filter(label: "15 mi", value: "24140.2", active: false, isRadiusFilter: true)
+            Filter(label: "15 mi", value: "24140.2", active: false, isRadiusFilter: true),
+            Filter(label: "25 mi", value: "40233.6", active: false, isRadiusFilter: true),
+            Filter(label: "50 mi", value: "80467.2", active: false, isRadiusFilter: true)
+            
         ]
         var radiusCategory = FilterCategory(filterName: "radius_filter", label: "Radius", filters: radiusFilters, expanded: false)
         

@@ -33,6 +33,16 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
                 return cell
             }
         }
+        
+        if filterCategory?.label == "Radius" {
+            if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
+                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeLessCell") as UITableViewCell
+                return cell
+            } else if !filterCategory!.expanded && indexPath.row == 3 {
+                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeMoreCell") as UITableViewCell
+                return cell
+            }
+        }
 
         let filter = filterCategory?.filters[indexPath.row]
         
@@ -59,7 +69,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let filterCategory = self.filterManager?.filterCategories[section]
-        if (filterCategory?.label == "Food Category"){
+        if (filterCategory?.label == "Food Category" || filterCategory?.label == "Radius"){
             if !filterCategory!.expanded {
                 return 4
             } else {
@@ -85,6 +95,18 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
         
         if filterCategory?.label == "Food Category" {
+            if !filterCategory!.expanded && indexPath.row == 3 {
+                filterCategory!.expanded = true
+                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+                return
+            } else if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
+                filterCategory!.expanded = false
+                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+                return
+            }
+        }
+        
+        if filterCategory?.label == "Radius" {
             if !filterCategory!.expanded && indexPath.row == 3 {
                 filterCategory!.expanded = true
                 self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
