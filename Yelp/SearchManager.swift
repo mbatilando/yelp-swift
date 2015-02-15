@@ -24,7 +24,15 @@ class SearchManager {
         var foodFilters = [
             Filter(label: "Thai", value: "thai", active: false),
             Filter(label: "Greek", value: "greek", active: false),
-            Filter(label: "Japanese", value: "japanese", active: false)
+            Filter(label: "Japanese", value: "japanese", active: false),
+            Filter(label: "American", value: "newamerican", active: false),
+            Filter(label: "Belgian", value: "belgian", active: false),
+            Filter(label: "Burmese", value: "burmese", active: false),
+            Filter(label: "Brazillian", value: "brazillian", active: false),
+            Filter(label: "Bulgarian", value: "bulgarian", active: false),
+            Filter(label: "Cafes", value: "cafes", active: false),
+            Filter(label: "Hawaiian", value: "hawaiian", active: false),
+            Filter(label: "Latin American", value: "latin", active: false)
         ]
         var foodCategory = FilterCategory(filterName: "category",label: "Food Category", filters: foodFilters, expanded: false)
         
@@ -45,7 +53,7 @@ class SearchManager {
         ]
         var radiusCategory = FilterCategory(filterName: "radius_filter", label: "Radius", filters: radiusFilters, expanded: false)
         
-        var categories = [foodCategory, bestDealCategory, sortCategory, radiusCategory]
+        var categories = [bestDealCategory, foodCategory, sortCategory, radiusCategory]
         
         self.filterManager = FilterManager(filterCategories: categories)
     }

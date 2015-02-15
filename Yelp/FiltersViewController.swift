@@ -23,6 +23,17 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        
+        if filterCategory?.label == "Food Category" {
+            if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
+                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeLessCell") as UITableViewCell
+                return cell
+            } else if !filterCategory!.expanded && indexPath.row == 3 {
+                let cell = self.filtersTable.dequeueReusableCellWithIdentifier("SeeMoreCell") as UITableViewCell
+                return cell
+            }
+        }
+
         let filter = filterCategory?.filters[indexPath.row]
         
         if (filter!.isFilterLabel) {
@@ -48,6 +59,13 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let filterCategory = self.filterManager?.filterCategories[section]
+        if (filterCategory?.label == "Food Category"){
+            if !filterCategory!.expanded {
+                return 4
+            } else {
+                return filterCategory!.filters.count + 1
+            }
+        }
         return filterCategory!.filters.count
     }
     
@@ -65,7 +83,21 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let filterCategory = self.filterManager?.filterCategories[indexPath.section]
+        
+        if filterCategory?.label == "Food Category" {
+            if !filterCategory!.expanded && indexPath.row == 3 {
+                filterCategory!.expanded = true
+                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+                return
+            } else if filterCategory!.expanded && indexPath.row == filterCategory!.filters.count {
+                filterCategory!.expanded = false
+                self.filtersTable.reloadSections(NSMutableIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Fade)
+                return
+            }
+        }
+        
         let filter = filterCategory!.filters[indexPath.row]
+        
         if filter.isFilterLabel {
             // Unselect previously selected filter
             for filter in filterCategory!.filters {
