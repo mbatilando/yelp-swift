@@ -28,10 +28,6 @@ class Restaurant {
         let numRatings = data["review_count"] as Int
         self.reviewCount = numRatings
         
-//        let location = data["location"] as NSDictionary
-//        let streetObj = location["address"] as NSArray
-//        self.location = streetObj[0] as String
-        
         self.location = data["location"] as NSDictionary
         
         let categoriesObj = data["categories"] as NSArray
