@@ -8,18 +8,14 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FiltersViewDelegate {
-    var client: YelpClient!
+class SearchViewController: UIViewController, FiltersViewDelegate {
     var searchBar: UISearchBar!
-    var restaurants: [Restaurant]
-    var searchManager: SearchManager
+    var restaurants: [Restaurant] = []
+    var searchManager: SearchManager = SearchManager()
     
     @IBOutlet weak var resultsTableView: UITableView!
 
-    
     required init(coder aDecoder: NSCoder) {
-        self.searchManager = SearchManager()
-        self.restaurants = []
         super.init(coder: aDecoder)
     }
     
@@ -45,26 +41,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell") as RestaurantCell
-        let restaurant = self.restaurants[indexPath.row]
-        cell.restaurant = restaurant
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.restaurants.count
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchManager.search(term: searchBar.text, onSuccess: { (restaurants) -> Void in
-            self.restaurants = restaurants
-            self.resultsTableView.reloadData()
-            self.searchBar.resignFirstResponder()
-        }) { () -> Void in}
-    }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController is UINavigationController {
             let nav = segue.destinationViewController as UINavigationController
@@ -79,13 +56,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 mapViewController.searchTitle = self.searchBar.text
             }
         }
-    }
-    
-    func filtersDidChange() {
-        searchManager.search(term: self.searchBar.text, onSuccess: { (restaurants) -> Void in
-            self.restaurants = restaurants
-            self.resultsTableView.reloadData()
-            }) { () -> Void in}
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -110,3 +80,40 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell") as RestaurantCell
+    let restaurant = self.restaurants[indexPath.row]
+    cell.restaurant = restaurant
+    return cell
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return self.restaurants.count
+  }
+}
+
+// MARK: - UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    searchManager.search(term: searchBar.text, onSuccess: { (restaurants) -> Void in
+      self.restaurants = restaurants
+      self.resultsTableView.reloadData()
+      self.searchBar.resignFirstResponder()
+      }) { () -> Void in}
+  }
+}
+
+// MARK: - FiltersViewDelegate
+extension SearchViewController: FiltersViewDelegate {
+
+  func filtersDidChange() {
+    searchManager.search(term: self.searchBar.text, onSuccess: { (restaurants) -> Void in
+      self.restaurants = restaurants
+      self.resultsTableView.reloadData()
+      }) { () -> Void in}
+  }
+}
